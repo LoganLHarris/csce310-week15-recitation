@@ -84,7 +84,7 @@ public class maze {
     }
     
     public static void main(String[] args) throws IOException {        
-        readMaze("small_maze.txt");
+        readMaze("maze.txt");
 
         System.out.println("DFS Solution:");
         List<int[]> dfsPath = solveDFS();
