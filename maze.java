@@ -110,27 +110,65 @@ public class maze {
         // TODO: Implement BFS
         // Helper methods available:
         int[] start = findStart();
-        int row = start[0];
-        int col = start[1];
 
+        List<List<int[]>> queue = new ArrayList<>();
+        List<int[]> ogPath = new ArrayList<>();
+        ogPath.add(start);
+        queue.add(ogPath);
+
+        while (!queue.isEmpty()) {
+            List<int[]> currentPath = queue.remove(0);
+            int[] currentSpace = currentPath.get(currentPath.size() - 1);
+            if (maze[currentSpace[0]][currentSpace[1]] == 'E') {
+                return currentPath;
+            }
+            markVisited(currentSpace[0], currentSpace[1]);
+            List<int[]> valid = findAdjacentSpaces(currentSpace[0], currentSpace[1]);
+            for (int[] validSpace : valid) {
+                List<int[]> newPath = currentPath;
+                newPath.add(newPath.size(),validSpace);
+                queue.add(queue.size(), newPath);
+            }
+            path = currentPath;
+        }
         
         // - isValid(row, col): check if position is valid
         // - markVisited(row, col): mark position and print current maze path
         // Return the path as list of int[2] arrays containing [row, col]
-        
         return path;
+    }
+
+    static List<int[]> findAdjacentSpaces(int row, int col) {
+        List<int[]> valid = new ArrayList<>();
+        if (isValid(row, col + 1)) {
+            valid.add(new int[] {row, col + 1});
+        }
+
+        if (isValid(row, col - 1)) {
+            valid.add(new int[] {row, col - 1});
+        }
+
+        if (isValid(row + 1, col)) {
+            valid.add(new int[] {row + 1, col});
+        }
+
+        if (isValid(row - 1, col)) {
+            valid.add(new int[] {row - 1, col});
+        }
+
+        return valid;
     }
     
     public static void main(String[] args) throws IOException {
-        readMaze("maze.txt");
+        //readMaze("maze.txt");
 
-        System.out.println("DFS Solution:");
-        List<int[]> dfsPath = solveDFS();
-        for (int[] pos : dfsPath) {
-            System.out.printf("[%d,%d] ", pos[0], pos[1]);
-        }
+        //System.out.println("DFS Solution:");
+        //List<int[]> dfsPath = solveDFS();
+        //for (int[] pos : dfsPath) {
+        //    System.out.printf("[%d,%d] ", pos[0], pos[1]);
+        //}
         
-        readMaze("maze.txt");  // Reset maze
+        readMaze("small_maze.txt");  // Reset maze
         System.out.println("\n\nBFS Solution:");
         List<int[]> bfsPath = solveBFS();
         for (int[] pos : bfsPath) {
