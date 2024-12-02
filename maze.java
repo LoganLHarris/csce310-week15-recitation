@@ -161,15 +161,15 @@ public class maze {
     }
     
     public static void main(String[] args) throws IOException {
-        //readMaze("maze.txt");
+        readMaze("maze.txt");
 
-        //System.out.println("DFS Solution:");
-        //List<int[]> dfsPath = solveDFS();
-        //for (int[] pos : dfsPath) {
-        //    System.out.printf("[%d,%d] ", pos[0], pos[1]);
-        //}
+        System.out.println("DFS Solution:");
+        List<int[]> dfsPath = solveDFS();
+        for (int[] pos : dfsPath) {
+            System.out.printf("[%d,%d] ", pos[0], pos[1]);
+        }
         
-        readMaze("small_maze.txt");  // Reset maze
+        readMaze("maze.txt");  // Reset maze
         System.out.println("\n\nBFS Solution:");
         List<int[]> bfsPath = solveBFS();
         for (int[] pos : bfsPath) {
