@@ -2,8 +2,6 @@ import java.io.*;
 import java.nio.file.*;
 import java.util.*;
 
-import javax.swing.GroupLayout.Group;
-
 public class maze {
     static char[][] maze;
     static int[] start = new int[2];
@@ -43,6 +41,21 @@ public class maze {
         }
         printMaze();
     }
+
+    static int[] findStart() {
+        int row;
+        int col; 
+        for (int i = 0; i < maze.length; i++) {
+            for (int j = 0; j < maze[0].length; j++) {
+                if (maze[i][j] == 'S') {
+                    row = i;
+                    col = j;
+                    return new int[] {row, col};
+                }
+            }
+        }
+        return null;
+    }
     
     static List<int[]> solveDFS() {
         List<int[]> path = new ArrayList<>();
@@ -71,8 +84,8 @@ public class maze {
     }
     
     public static void main(String[] args) throws IOException {        
-        readMaze("maze.txt");
-        
+        readMaze("small_maze.txt");
+
         System.out.println("DFS Solution:");
         List<int[]> dfsPath = solveDFS();
         for (int[] pos : dfsPath) {
