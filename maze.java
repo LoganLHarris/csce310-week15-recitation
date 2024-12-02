@@ -56,6 +56,29 @@ public class maze {
         
         return path;
     }
+
+    /**
+     * Checks for a valid space adjacent to the provided space in the four cardinal
+     * directions. Returns null if one isn't found.
+     *
+     * @param currentSpace The space you are currently in.
+     * @return A valid adjacent space, or null if none exist.
+     */
+    static int[] findValidUnvisitedSpace(int[] currentSpace) {
+        if(currentSpace[1] - 1 >= 0 && isValid(currentSpace[0], currentSpace[1] - 1))
+            return new int[]{currentSpace[0], currentSpace[1] - 1};
+
+        if(currentSpace[0] - 1 >= 0 && isValid(currentSpace[0] - 1, currentSpace[1]))
+            return new int[]{currentSpace[0] - 1, currentSpace[1]};
+
+        if(currentSpace[0] + 1 < maze.length && isValid(currentSpace[0] + 1, currentSpace[1]))
+            return new int[]{currentSpace[0] + 1, currentSpace[1]};
+
+        if(currentSpace[1] + 1 < maze[0].length && isValid(currentSpace[0], currentSpace[1] + 1))
+            return new int[]{currentSpace[0], currentSpace[1] + 1};
+
+        return null;
+    }
     
     static List<int[]> solveBFS() {
         List<int[]> path = new ArrayList<>();
@@ -70,7 +93,7 @@ public class maze {
         return path;
     }
     
-    public static void main(String[] args) throws IOException {        
+    public static void main(String[] args) throws IOException {
         readMaze("maze.txt");
         
         System.out.println("DFS Solution:");
