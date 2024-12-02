@@ -72,6 +72,7 @@ public class maze {
         while(maze[path.getLast()[0]][path.getLast()[1]] != 'E') {
             if(findValidUnvisitedSpace(path.getLast()) != null) {
                 path.add(findValidUnvisitedSpace(path.getLast()));
+                markVisited(path.getLast()[0], path.getLast()[1]);
             } else {
                 path.removeLast();
             }
@@ -176,7 +177,7 @@ public class maze {
         }
     }
 
-    // Group Members:
+    // Group Members: Logan Harris, Teresa Trinh, Jacob Rieker
         
     // Answers:
     //     What is the path for each?
