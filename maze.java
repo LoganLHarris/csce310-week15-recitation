@@ -53,6 +53,16 @@ public class maze {
         // - isValid(row, col): check if position is valid
         // - markVisited(row, col): mark position and print current maze path
         // Return the path as list of int[2] arrays containing [row, col]
+
+        path.add(findStart());
+
+        while(maze[path.getLast()[0]][path.getLast()[1]] != 'E') {
+            if(findValidUnvisitedSpace(path.getLast()) != null) {
+                path.add(findValidUnvisitedSpace(path.getLast()));
+            } else {
+                path.removeLast();
+            }
+        }
         
         return path;
     }
