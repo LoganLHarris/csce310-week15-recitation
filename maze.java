@@ -109,6 +109,11 @@ public class maze {
         
         // TODO: Implement BFS
         // Helper methods available:
+        int[] start = findStart();
+        int row = start[0];
+        int col = start[1];
+
+        
         // - isValid(row, col): check if position is valid
         // - markVisited(row, col): mark position and print current maze path
         // Return the path as list of int[2] arrays containing [row, col]
