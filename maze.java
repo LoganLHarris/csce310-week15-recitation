@@ -59,9 +59,6 @@ public class maze {
     
     static List<int[]> solveDFS() {
         List<int[]> path = new ArrayList<>();
-        boolean[][] visited = new boolean[maze.length][maze[0].length];
-        
-        // TODO: Implement DFS
         // Helper methods available:
         // - isValid(row, col): check if position is valid
         // - markVisited(row, col): mark position and print current maze path
@@ -106,9 +103,6 @@ public class maze {
     
     static List<int[]> solveBFS() {
         List<int[]> path = new ArrayList<>();
-        boolean[][] visited = new boolean[maze.length][maze[0].length];
-        
-        // TODO: Implement BFS
         // Helper methods available:
         int[] start = findStart();
 
