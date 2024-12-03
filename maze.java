@@ -118,17 +118,17 @@ public class maze {
         queue.add(ogPath);
 
         while (!queue.isEmpty()) {
-            List<int[]> currentPath = queue.remove(0);
-            int[] currentSpace = currentPath.get(currentPath.size() - 1);
+            List<int[]> currentPath = queue.removeFirst();
+            int[] currentSpace = currentPath.getLast();
             if (maze[currentSpace[0]][currentSpace[1]] == 'E') {
                 return currentPath;
             }
             markVisited(currentSpace[0], currentSpace[1]);
             List<int[]> valid = findAdjacentSpaces(currentSpace[0], currentSpace[1]);
             for (int[] validSpace : valid) {
-                List<int[]> newPath = currentPath;
-                newPath.add(newPath.size(),validSpace);
-                queue.add(queue.size(), newPath);
+                List<int[]> newPath = new ArrayList<>(currentPath);
+                newPath.add(validSpace);
+                queue.add(newPath);
             }
             path = currentPath;
         }
